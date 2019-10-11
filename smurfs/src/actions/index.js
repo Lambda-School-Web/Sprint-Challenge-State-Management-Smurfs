@@ -24,6 +24,18 @@ export const postSmurf = data => dispatch => {
     .catch(err => dispatch({ type: POST_FAILURE, payload: err.response }));
 };
 
+export const START_PUTTING = "START_PUTTING";
+export const PUT_SUCCESS = "PUT_SUCCESS";
+export const PUT_FAILURE = "PUT_FAILURE";
+export const putSmurf = (id, data) => dispatch => {
+  dispatch({ type: START_PUTTING });
+
+  axios
+    .put(`http://localhost:3333/smurfs/${id}`, data)
+    .then(res => console.log(res))
+    .catch(err => dispatch({ type: PUT_FAILURE, payload: err.response }));
+};
+
 export const START_DELETING = "START_DELETING";
 export const DELETE_SUCCESS = "DELETE_SUCCESS";
 export const DELETE_FAILURE = "DELETE_FAILURE";
